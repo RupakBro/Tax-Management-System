@@ -1,0 +1,249 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Tax Management System</title>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="
+	{% static 'css/style.css' %}"
+    />
+    <!-- Latest compiled and minified CSS -->
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+      }
+
+      .log-header {
+        margin-top: 10px;
+        margin-left: 20px;
+        line-height: 54px;
+      }
+
+      .log-header h2 {
+        font-size: 26px;
+        font-family: "Poppins";
+      }
+      .log-header h3 {
+        font-size: 18px;
+        font-family: "Poppins";
+      }
+
+      body {
+        background-color: rgb(219, 226, 226);
+        /*background: linear-gradient(-45deg,  #EE7752, #E73C7E, #23A605, #23D5AB );;*/
+      }
+
+      .row1 {
+        background-color: white;
+        border-radius: 30px;
+        box-shadow: 15px 15px 22px grey;
+      }
+
+      .img-fluid {
+        border-top-right-radius: 30px;
+        border-bottom-right-radius: 30px;
+      }
+      .header6 {
+        font-size: 20px;
+        font-weight: normal;
+        font-family: "Poppins";
+      }
+      .btn1 {
+     	 display: block;
+	    border: none;
+      outline: none;
+      height: 50px;
+      width: 100%;
+	    border-radius: 25px;
+	    margin: 1rem 0;
+      font-size: 1.2rem;
+      background-image: linear-gradient(to right, #38d39f, #090162, #38d39f);
+      color: #fff;
+      font-family: 'Poppins';
+      background-size: 200%;
+      transition: .5s;
+      text-transform: uppercase;
+      }
+      .btn1:hover {
+        background-position: right;
+      }
+      .form-control {
+        box-shadow: 3px 3px 5px grey;
+      }
+      /*footer css of index.html*/
+        .footer{
+          background-color: #090162; 
+          color: white;
+        }
+
+        .footer-content{
+          margin-top: 20px;
+        }
+
+        .icons{
+          background-color: ghostwhite;
+          border: 1px solid white;
+          border-radius: 50%;
+          font-size: 15px !important;
+        }
+    </style>
+  </head>
+  <body>
+    <div class="header">
+      <nav class="navbar navbar-expand-md navbar-dark navigation">
+        <div class="container">
+          <a
+            href="{% url 'home' %}"
+            class="navbar-brand text-warning font-weight-bold"
+          >
+            <img class="navbar-logo" src="{% static 'Images/logo1.png' %}" />
+          </a>
+        </div>
+      </nav>
+
+      <!-- <div class="log-header">
+        <h2>Log In</h2>
+        <h3>Get news and more information</h3>
+      </div> -->
+      <section class="FormCard my-4 mx-5">
+        <div class="container">
+          <div class="row row1 no-gutters" style="border: 2px solid #090162">
+            <div class="col-lg-7 px-5 pt-5">
+              <h6 class="header6 mb-4">Please login to read e-paper</h6>
+              <form method="POST" action="">
+                {% csrf_token %}
+                <div class="form-row">
+                  <div class="col-lg-7">
+                    <div class="input-group mb-3">
+                      <span class="input-group-text" id="basic-addon1"
+                        ><i class="fa fa-user"></i
+                      ></span>
+                      <input
+                        type="username"
+                        name="username"
+                        class="form-control p-4"
+                        placeholder="Username"
+                        aria-label="Username"
+                        aria-describedby="basic-addon1"
+                        required
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="col-lg-7">
+                    <div class="input-group mb-3">
+                      <span class="input-group-text" id="basic-addon1"
+                        ><i class="fa fa-lock"></i
+                      ></span>
+                      <input
+                        type="password"
+                        name="password"
+                        class="form-control p-4"
+                        placeholder="Password"
+                        aria-label="Password"
+                        aria-describedby="basic-addon1"
+                        required
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="col-lg-7">
+                    <input class="btn1 mt-3 mb-5" type="submit" value="Login" />
+                  </div>
+                </div>
+                <p>
+                  Don't have an account?<a href="{% url 'register' %}"
+                    >Register here</a
+                  >
+                </p>
+                {% for message in messages %}
+                <p id="messages">{{message}}</p>
+                {% endfor %}
+              </form>
+            </div>
+
+            <div class="col-lg-5">
+              <img
+                src="{% static 'Images/laptop.jpg' %}"
+                class="img-fluid"
+                alt=""
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+    <div class="footer" style="margin-top: 25px; background-color: #090162; color: white;">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-4 footer-content">
+            <img src="{% static 'Images/logo1.png' %}" class="navbar-logo" />
+            <p>The english edition Online News</p>
+            <p>Phone No: 9856234124,014256352</p>
+            <p>taxcompany@gmail.com</p>
+          </div>
+          <div class="col-lg-4 footer-content">
+            <h6>News</h6>
+            <a href="{% url 'politics' %}" style="color: white; text-decoration: none;"><p>Politics</p></a>
+            <a href="{% url 'entertainment' %}" style="color: white; text-decoration: none;"><p>Entertainment</p></a>
+            <a href="{% url 'sports' %}" style="color: white; text-decoration: none;"><p>Sports</p></a>
+            <a href="{% url 'business' %}" style="color: white; text-decoration: none;"><p>Business</p></a>
+          </div>
+          <div class="col-lg-4 footer-content">
+            <h6>You can also find us on</h6>
+            <div style="font-size: 35px; margin-left: 10px">
+              <a href = "https://www.facebook.com/News24nepal.tv" target="_blank">
+                <i class="fa fa-facebook-official" style="color: blue;"></i>
+              </a>
+              &nbsp;&nbsp;
+              <a href="https://www.instagram.com/ekantipur_news/" target="_blank">
+              <i class="fa fa-instagram" style="color:#F56040;;"></i>
+              </a>
+              &nbsp;&nbsp;
+              <a href="twitter.com/rsnpj">
+              <i class="fa fa-twitter-square"  style="color: #405DE6;" target="_blank"></i></a>
+            </div>
+          </div>
+          <hr class="mb-3" style="background-color: white; border: 1px solid white; width: 100%; margin-left: 0; margin-right: 0;">
+          <div style="background-color: #090162; color: white; width: 100%">
+            <p style="text-align: center">
+              Copyright &copy; 2021 Tax Management System, All rights reserved
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
